@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Manage Data</title>
+	</head>
+	<body>
+		<div id="vueApp">
+			<form>
+				<button type="button" v-if="states.factionView === 'edit'" @click="changeFactionView('new')">
+					Add Faction
+				</button>
+				<button type="button" v-if="states.factionView === 'new'" @click="changeFactionView('edit')">
+					Edit Faction
+				</button>
+				<br>
+				<label for="faction-name">Name:</label><input type="text" id="faction-name"><br>
+				<button type="button" v-if="states.factionView === 'new'">Confirm New Faction</button>
+				<button type="button" v-if="states.factionView === 'edit'">Revert Changes</button>
+				<button type="button" v-if="states.factionView === 'edit'">Confirm Changes</button>
+				<button type="button" v-if="states.factionView === 'edit'">Delete Faction</button>
+			</form>
+			<br>
+			<table>
+				<button v-for="faction in factions">{{faction.name}}</button>
+			</table>
+			<br>
+			<form>
+				<button type="button" v-if="states.unitView === 'edit'" @click="changeUnitView('new')">Add New Unit</button>
+				<button type="button" v-if="states.unitView === 'new'" @click="changeUnitView('edit')">Edit A Unit</button><br>
+				<label>Name:</label><input type="text" id="name"><br>
+				<button type="button" v-if="states.unitView === 'new'">Clear Data Sheet</button>
+				<button type="button" v-if="states.unitView === 'new'">Confirm New Unit</button>
+				<button type="button" v-if="states.unitView === 'edit'">Revert Changes</button>
+				<button type="button" v-if="states.unitView === 'edit'">Confirm Changes</button>
+				<button type="button" v-if="states.unitView === 'edit'">Delete Unit</button>
+			</form>
+			<br>
+			<table>
+				<button v-for="unit in selectedFaction.units">{{unit.name}}</button>
+			</table>
+		</div>
+	</body>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="js/manage_data.js"></script>
+</html>
